@@ -1,0 +1,17 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: profixs.forms::lang.field.fields.id
+        searchable: true
+        sortable: false
+    title:
+        label: profixs.forms::lang.field.fields.title
+        searchable: true
+        sortable: false
+    type:
+        label: profixs.forms::lang.field.fields.type
+        searchable: true
+        sortable: false

@@ -1,0 +1,65 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+tabs:
+  fields:
+    name:
+      label: profixs.forms::lang.form.fields.name
+      tab: profixs.forms::lang.form.tabs.main
+      span: auto
+    code:
+      label: profixs.forms::lang.form.fields.code
+      tab: profixs.forms::lang.form.tabs.main
+      span: auto
+    description:
+      label: profixs.forms::lang.form.fields.description
+      type: richeditor
+      tab: profixs.forms::lang.form.tabs.main
+    success_text:
+      label: profixs.forms::lang.form.fields.success_text
+      type: richeditor
+      tab: profixs.forms::lang.form.tabs.main
+    send:
+      label: profixs.forms::lang.form.fields.send
+      type: switch
+      tab: profixs.forms::lang.form.tabs.send_mail
+    template:
+      label: profixs.forms::lang.form.fields.template
+      type: relation
+      nameFrom: code
+      tab: profixs.forms::lang.form.tabs.send_mail
+      commentHtml: true
+      comment: profixs.forms::lang.form.fields.template_comment
+      trigger:
+        action: show
+        field: send
+        condition: checked
+    emails:
+      label: profixs.forms::lang.form.fields.emails
+      type: repeater
+      tab: profixs.forms::lang.form.tabs.send_mail
+      prompt: profixs.forms::lang.form.fields.emails_prompt
+      form:
+        fields:
+          email:
+            label: profixs.forms::lang.form.fields.emails_form.email
+      trigger:
+        action: show
+        field: send
+        condition: checked
+    submit_text:
+      label: profixs.forms::lang.form.fields.submit_text
+      tab: profixs.forms::lang.form.tabs.main
+    fields:
+      label: profixs.forms::lang.form.fields.fields
+      type: partial
+      path: $/profixs/forms/controllers/forms/_fields.php
+      tab: profixs.forms::lang.form.tabs.fields
+secondaryTabs:
+  fields:
+    is_auth_required:
+      label: Is Auth Required
+      type: switch
+      default: false
+

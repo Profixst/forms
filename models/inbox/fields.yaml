@@ -1,0 +1,27 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: profixs.forms::lang.inbox.fields.id
+        disabled: true
+        span: auto
+    created_at:
+        label: profixs.forms::lang.inbox.fields.created_at
+        disabled: true
+        span: auto
+    status_label:
+        label: profixs.forms::lang.inbox.fields.status_label
+        span: auto
+    ip:
+        label: profixs.forms::lang.inbox.fields.ip
+        disabled: true
+        span: auto
+    fields:
+        label: profixs.forms::lang.inbox.fields.fields
+        type: partial
+        path: "$/profixs/forms/controllers/inboxes/_fields_field.php"
+    files:
+        label: profixs.forms::lang.inbox.fields.files
+        type: partial

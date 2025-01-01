@@ -1,0 +1,28 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: profixs.forms::lang.inbox.fields.id
+        searchable: true
+    form:
+        label: profixs.forms::lang.inbox.fields.form
+        relation: form
+        select: name
+        searchable: false
+        sortable: true
+    fields:
+        label: profixs.forms::lang.inbox.fields.fields
+        type: partial
+        searchable: true
+        sortable: false
+        path: "$/profixs/forms/controllers/inboxes/_fields_field.php"
+    status_label:
+        label: profixs.forms::lang.inbox.fields.status_label
+        searchable: false
+        sortable: false
+    created_at:
+        label: profixs.forms::lang.inbox.fields.created_at
+        type: date
+        searchable: false
