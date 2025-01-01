@@ -1,0 +1,32 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: profixs.forms::lang.system.labels.field
+
+# Model Form Field configuration
+form: $/profixs/forms/models/field/fields.yaml
+
+# Model Class name
+modelClass: ProFixS\Forms\Models\Field
+
+# Default redirect location
+defaultRedirect: profixs/forms/fields
+
+# Create page
+create:
+    title: profixs.forms::lang.system.labels.create_field
+    redirect: profixs/forms/fields/update/:id
+    redirectClose: profixs/forms/fields
+
+# Update page
+update:
+    title: profixs.forms::lang.system.labels.edit_field
+    redirect: profixs/forms/fields
+    redirectClose: profixs/forms/fields
+
+# Preview page
+preview:
+    title: profixs.forms::lang.system.labels.preview_field
+

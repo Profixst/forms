@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: profixs.forms::lang.system.labels.inbox
+
+# Model Form Field configuration
+form: $/profixs/forms/models/inbox/fields.yaml
+
+# Model Class name
+modelClass: ProFixS\Forms\Models\Inbox
+
+# Default redirect location
+defaultRedirect: profixs/forms/inboxes
+
+# Create page
+#create:
+#    title: backend::lang.form.create_title
+#    redirect: profixs/forms/inboxes/update/:id
+#    redirectClose: profixs/forms/inboxes
+
+# Update page
+#update:
+#    title: backend::lang.form.update_title
+#    redirect: profixs/forms/inboxes
+#    redirectClose: profixs/forms/inboxes
+
+# Preview page
+preview:
+    title: profixs.forms::lang.system.labels.preview_inbox
