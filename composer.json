@@ -1,0 +1,17 @@
+{
+    "name": "profixs/forms",
+    "type": "october-plugin",
+    "description": "ProFixS Forms Plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mukola Trotsenko",
+            "email": "newdarkstudiot@gmail.com"
+        }
+    ],
+    "require": {
+        "google/recaptcha": "~1.1",
+        "phpoffice/phpspreadsheet": "^2.2"
+
+    }
+}
