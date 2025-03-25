@@ -2,12 +2,11 @@
     <a
         href="<?= Backend::url('profixs/forms/forms/create') ?>"
         class="btn btn-primary oc-icon-plus">
-        <i class="icon-plus"></i>
         <?= trans('profixs.forms::lang.system.buttons.new_form'); ?>
     </a>
 
     <button
-        class="btn btn-secondary oc-icon-trash-o"
+        class="btn btn-danger oc-icon-trash-o"
         disabled="disabled"
         onclick="$(this).data('request-data', { checked: $('.control-list').listWidget('getChecked') })"
         data-request="onDelete"

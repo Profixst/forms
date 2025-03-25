@@ -6,9 +6,7 @@ use Backend\Classes\Controller;
 use System\Classes\SettingsManager;
 
 /**
- * Forms Backend Controller
- *
- * @link https://docs.octobercms.com/3.x/extend/system/controllers.html
+ * Forms Back-end Controller
  */
 class Forms extends Controller
 {
@@ -19,26 +17,13 @@ class Forms extends Controller
         '@ProFixS.MultiLanguage.Behaviors.MultiLanguageController'
     ];
 
-    /**
-     * @var string formConfig file
-     */
     public $formConfig = 'config_form.yaml';
-
-    /**
-     * @var string listConfig file
-     */
     public $listConfig = 'config_list.yaml';
     public $relationConfig = 'config_relation.yaml';
-    /**
-     * @var array required permissions
-     */
     public $bodyClass = 'compact-container';
 
     public $requiredPermissions = ['profixs.forms.manage_forms'];
 
-    /**
-     * __construct the controller
-     */
     public function __construct()
     {
         parent::__construct();
@@ -54,4 +39,3 @@ class Forms extends Controller
         }
     }
 }
-

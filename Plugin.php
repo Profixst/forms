@@ -20,7 +20,7 @@ class Plugin extends PluginBase
         return [
             'name'        => 'profixs.forms::lang.plugin.name',
             'description' => 'profixs.forms::lang.plugin.description',
-            'author'      => 'profixs',
+            'author'      => 'ProFixS',
             'icon'        => 'icon-leaf'
         ];
     }
@@ -134,4 +134,3 @@ class Plugin extends PluginBase
         ];
     }
 }
-

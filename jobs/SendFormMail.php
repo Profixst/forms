@@ -83,4 +83,3 @@ class SendFormMail
         return array_pluck($inbox->form->emails, 'email');
     }
 }
-

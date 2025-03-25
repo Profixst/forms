@@ -58,7 +58,13 @@
 				</div>
 			{# /SELECT #}
 
-			
+			{# RECAPTCHA #}
+			{% elseif field.type == 'recaptcha' %}
+				<div class="form-group" class="field-recaptcha">
+					<div class="g-recaptcha" data-sitekey="{{ recaptcha.site_key }}"></div>
+					<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl={{ recaptcha.lang }}"></script>
+				</div>
+			{# /RECAPTCHA #}
 
 			{# RADIO #}
 			{% elseif field.type == 'radio' %}

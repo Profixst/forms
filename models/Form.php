@@ -87,4 +87,3 @@ class Form extends Model
         parent::delete();
     }
 }
-

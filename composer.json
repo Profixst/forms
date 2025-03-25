@@ -1,7 +1,7 @@
 {
     "name": "profixs/forms",
+	"description": "ProFixS Forms Plugin",
     "type": "october-plugin",
-    "description": "ProFixS Forms Plugin",
     "license": "MIT",
     "authors": [
         {
@@ -9,8 +9,9 @@
             "email": "newdarkstudiot@gmail.com"
         }
     ],
+	"minimum-stability": "dev",
     "require": {
-        "google/recaptcha": "~1.1",
+        "google/recaptcha": "1.3.0",
         "phpoffice/phpspreadsheet": "^2.2"
 
     }

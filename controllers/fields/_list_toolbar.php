@@ -19,4 +19,3 @@
         <?= trans('profixs.forms::lang.system.buttons.delete_selected'); ?>
     </button>
 </div>
-

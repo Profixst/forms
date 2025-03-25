@@ -12,9 +12,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xls;
 use Request;
 
 /**
- * Inboxes Backend Controller
- *
- * @link https://docs.octobercms.com/3.x/extend/system/controllers.html
+ * Inboxes Back-end Controller
  */
 class Inboxes extends Controller
 {
@@ -23,24 +21,11 @@ class Inboxes extends Controller
         'Backend.Behaviors.ListController'
     ];
 
-    /**
-     * @var string formConfig file
-     */
     public $formConfig = 'config_form.yaml';
-
-    /**
-     * @var string listConfig file
-     */
     public $listConfig = 'config_list.yaml';
 
-    /**
-     * @var array required permissions
-     */
     public $requiredPermissions = ['profixs.forms.manage_inbox'];
 
-    /**
-     * __construct the controller
-     */
     public function __construct()
     {
         parent::__construct();
@@ -180,4 +165,3 @@ class Inboxes extends Controller
         die($writer->save("php://output"));
     }
 }
-

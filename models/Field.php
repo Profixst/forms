@@ -172,4 +172,3 @@ class Field extends Model
         return array_combine($extensions, $extensions);
     }
 }
-

@@ -18,4 +18,3 @@ class Auth
     	return 'Invalid auth key.';
     }
 }
-

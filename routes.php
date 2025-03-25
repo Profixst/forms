@@ -55,4 +55,3 @@ Route::middleware('web')->get('auth/kyivid/callback', function () {
 Route::middleware('web')->post('logout', function () {
 	return Auth::logout();
 });
-

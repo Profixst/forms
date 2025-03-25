@@ -15,4 +15,3 @@ interface ValidatorBuilderInterface
      */
     public function messages(): array;
 }
-

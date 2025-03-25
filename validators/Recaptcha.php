@@ -35,4 +35,3 @@ class Recaptcha
     	return 'Invalid captcha.';
     }
 }
-

@@ -14,6 +14,7 @@ modelClass: ProFixS\Forms\Models\Inbox
 # Default redirect location
 defaultRedirect: profixs/forms/inboxes
 
+
 # Preview page
 preview:
     title: profixs.forms::lang.system.labels.preview_inbox

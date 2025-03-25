@@ -12,7 +12,7 @@ modelClass: ProFixS\Forms\Models\Inbox
 title: profixs.forms::lang.system.labels.manage_inboxes
 
 # Link URL for each record
-recordUrl: profixs/forms/inboxes/preview/:id
+recordUrl: profixs/forms/inboxes/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records

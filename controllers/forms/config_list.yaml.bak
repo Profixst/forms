@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/profixs/forms/models/inbox/columns.yaml
+list: $/profixs/forms/models/form/columns.yaml
 
 # Model Class name
-modelClass: ProFixS\Forms\Models\Inbox
+modelClass: ProFixS\Forms\Models\Form
 
 # List Title
-title: profixs.forms::lang.system.labels.manage_inboxes
+title: profixs.forms::lang.system.labels.manage_forms
 
 # Link URL for each record
-recordUrl: profixs/forms/inboxes/preview/:id
+recordUrl: profixs/forms/forms/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records
@@ -30,9 +30,9 @@ showSetup: true
 showSorting: true
 
 # Default sorting column
-# defaultSort:
-#     column: created_at
-#     direction: desc
+#defaultSort:
+#    column: id
+#    direction: asc
 
 # Display checkboxes next to each record
 showCheckboxes: true
@@ -45,6 +45,3 @@ toolbar:
     # Search widget configuration
     search:
         prompt: backend::lang.list.search_prompt
-
-# Filter widget configuration
-filter: config_filter.yaml

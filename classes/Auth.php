@@ -143,7 +143,7 @@ class Auth implements AuthInterface
         	return;
         }
 
-      	return $token;
+		return $token;
 	}
 
 	/**
@@ -177,4 +177,3 @@ class Auth implements AuthInterface
         return $result;
 	}
 }
-

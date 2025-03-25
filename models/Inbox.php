@@ -137,4 +137,3 @@ class Inbox extends Model
             ->implode("\r");
     }
 }
-

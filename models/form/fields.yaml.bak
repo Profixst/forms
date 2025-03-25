@@ -62,3 +62,4 @@ secondaryTabs:
       label: Is Auth Required
       type: switch
       default: false
+

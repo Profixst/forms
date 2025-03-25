@@ -279,4 +279,3 @@ class Form extends ComponentBase
         }
     }
 }
-
