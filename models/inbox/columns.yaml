@@ -17,7 +17,7 @@ columns:
         type: partial
         searchable: true
         sortable: false
-        path: "$/profixs/forms/controllers/inboxes/_fields_field.php"
+        path: $/profixs/forms/controllers/inboxes/_fields_field.php
     status_label:
         label: profixs.forms::lang.inbox.fields.status_label
         searchable: false
