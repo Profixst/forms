@@ -1,1 +1,80 @@
-v1.0.1: First version of forms
+v1.0.1: 'First version of Forms'
+v1.0.2:
+    - 'Create Forms and Fields tables'
+    - create_forms_table.php
+    - create_fields_table.php
+v1.0.3.1:
+    - 'Create Inbox table'
+    - create_inbox_table.php
+v1.0.4:
+    - 'Alter Table forms, add is_system column'
+    - 2025_01_24_alter_table_forms_fields_inbox.php
+v1.0.5:
+    - 'Alter Table fields, add file extenions validate'
+    - 2025_01_24_add_files_extensions.php
+v1.0.6:
+    - '2025-01-24. Implement [Settings] model by revisions.'
+v2.0.1:
+    - 'Fields, forms and inboxed extended to MultiSite'
+    - 'Fields and forms extended to MultiLanguage'
+    - 'Name and Code fields in the Forms are now required'
+    - 'Fields bound to a form are deleted following it'
+    - 2025_01_24_bind_multisite.php
+v2.0.2:
+    - '2025-01-24. Fix mail sending with attached files.'
+v2.1.0:
+    - '2025-01-24. Add multicheckbox field type.'
+v2.1.1:
+    - '2025-01-24. Add new field type - [phone].'
+v2.1.2:
+    - '2025-01-24. Add rules options.'
+    - 2025_01_24_add_rules_options.php
+v2.1.3:
+    - '2025-01-24. Add selecttree field type.'
+v2.1.4:
+    - '2025-01-24. Fix inboxes view for multi-language site'
+v2.1.5:
+    - '2025-01-24. Fix inboxes files preview'
+v2.1.6:
+    - '2025-01-24. Fix XSS for display inbox data in adminpanel'
+v2.1.7:
+    - '2025-01-24. Fix XSS, save fields to DB only from form builder, display only string'
+v2.1.8:
+    - '2025-01-24. Add authorizatiton support'
+    - 2025_01_24_form_auth.php
+v2.2.9:
+    - '2025-01-24. Change form uploaded files from public to protected'
+v2.2.10:
+    - '2025-01-24. Change form mail send to queue'
+v2.2.11:
+    - '2025-01-24. Fix protected files attachment'
+v2.2.12:
+    - '2025-01-24. Fix form queue mail send, add events for MS and ML'
+v2.2.13:
+    - '2025_01_24 Change length of fields title column'
+    - 2025_01_24_fields_title_length.php
+v2.2.14:
+    - '2025-01-24. Add method getUserinfo to Auth class'
+v2.2.15:
+    - '2025-01-24. Improve auth logs'
+v2.2.16:
+    - '2025-01-24. Check session id for verify auth code'
+v2.2.17:
+    - '2025-01-24. Add version to js/css'
+v2.2.18:
+    - '2025-01-24. Refactor auth to sessions'
+v2.2.19:
+    - '2025-01-24. Refactor auth, add routes for auth and callback, save redirect url to session'
+v2.2.20:
+    - '2025-01-24. Refactor file validation rules'
+    - 2025-01-24_form_file_extensions_field.php
+v2.2.21:
+    - '2025-01-24. Change upload formants to jpeg,jpg,png,pdf'
+v2.2.22:
+    - '2025-01-24. Form file extensions check, remove not valid'
+    - 2025-01-24_form_file_extensions.php
+v2.2.23:
+    - '2025-01-24. Fix mail send in queue for multisite/multilange, add MailManager forgetInstance, because it load template by code and use singleton'
+v2.2.24:
+    - '2025-01-24. Create DB index for column form_id'
+    - 2025-01-24_form_index.php
