@@ -49,9 +49,6 @@ v2.2.18:
     - '2025-01-24. Refactor auth to sessions'
 v2.2.19:
     - '2025-01-24. Refactor auth, add routes for auth and callback, save redirect url to session'
-v2.2.20:
-    - '2025-01-24. Refactor file validation rules'
-    - 2025_01_24_form_file_extensions_field.php
 v2.2.21:
     - '2025-01-24. Change upload formants to jpeg,jpg,png,pdf'
 v2.2.22:
