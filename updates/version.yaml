@@ -58,4 +58,3 @@ v2.2.23:
     - '2025-01-24. Fix mail send in queue for multisite/multilange, add MailManager forgetInstance, because it load template by code and use singleton'
 v2.2.24:
     - '2025-01-24. Create DB index for column form_id'
-    - 2025_01_24_form_index.php
