@@ -66,7 +66,8 @@ class Field extends Model
         if ($this->file_extensions_list == 0) {
             unset($this->file_extensions_list);
         }
-        $this->rules['file_extensions_list.*'] = 'in:' . implode(',', Config::get('profixs.forms::config.available_form_file_extensions'));
+        $extensions = Config::get('profixs.forms::config.available_form_file_extensions');
+        $this->rules['file_extensions_list.*'] = 'in:' . implode(',', is_array($extensions) ? $extensions : []);
     }
 
     /**
@@ -74,7 +75,7 @@ class Field extends Model
      */
     public function getFileExtensionsAttribute()
     {
-        return implode(', ', $this->file_extensions_list ?? []);
+        return implode(', ', is_array($this->file_extensions_list) ? $this->file_extensions_list : []);
     }
 
     /**
@@ -92,9 +93,9 @@ class Field extends Model
                 break;
             case 'file':
                 $rules = array_merge($rules, ['file']);
-                if ($this->file_extensions_list) {
-                    $rules = array_merge($rules, ['mimes:' . implode(',', $this->file_extensions_list)]);
-                }
+                if (is_array($this->file_extensions_list) && !empty($this->file_extensions_list)) {
+                $rules = array_merge($rules, ['mimes:' . implode(',', $this->file_extensions_list)]);
+}
                 break;
             case 'recaptcha':
             case 'label':
