@@ -21,7 +21,7 @@ fields:
     fields:
         label: profixs.forms::lang.inbox.fields.fields
         type: partial
-        path: $/profixs/forms/controllers/inboxes/_fields_field.php
+        path: "$/profixs/forms/controllers/inboxes/_fields_field.php"
     files:
         label: profixs.forms::lang.inbox.fields.files
         type: partial
