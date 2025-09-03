@@ -58,6 +58,7 @@
 				</div>
 			{# /SELECT #}
 
+<<<<<<< HEAD
 		//	{# RECAPTCHA v3 #}
 		//	{% elseif field.type == 'recaptcha' %}
     		//		<script src="https://www.google.com/recaptcha/api.js?render={{ recaptcha.site_key }}"></script>
@@ -73,6 +74,9 @@
 		//	{# /RECAPTCHA v3 #}
 
 			{# RECAPTCHA #}
+=======
+		    {# RECAPTCHA #}
+>>>>>>> 1fd4107848b137e57a8b59cee24fa95acef58930
 			{% elseif field.type == 'recaptcha' %}
 				<div class="form-group" class="field-recaptcha">
 					<div class="g-recaptcha" data-sitekey="{{ recaptcha.site_key }}"></div>
