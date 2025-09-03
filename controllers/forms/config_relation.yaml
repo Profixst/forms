@@ -7,6 +7,6 @@ fields:
         defaultSort:
             column: id
             direction: asc
-        # recordOnClick: "$.oc.relationBehavior.clickViewListRecord(:id, 'Pages-update-RelationController-components');fixTranslateJsonable();"
+            recordOnClick: "$.oc.relationBehavior.clickViewListRecord(:id, 'Pages-update-RelationController-components');fixTranslateJsonable();"
     manage:
         form: ~/plugins/profixs/forms/models/field/fields.yaml

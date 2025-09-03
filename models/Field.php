@@ -11,43 +11,25 @@ class Field extends Model
     use \October\Rain\Database\Traits\Validation;
     use \October\Rain\Database\Traits\Sortable;
 
-    /**
-     * @var string The database table used by the model.
-     */
     public $table = 'profixs_forms_fields';
 
-    /**
-     * @var array Validation rules
-     */
     public $rules = [
         'code' => 'required',
         'type' => 'required|in:text,textarea,select,selecttree,checkbox,multicheckbox,radio,recaptcha,label,file,phone',
         'file_extensions_list' => 'required_if:type,file|nullable'
     ];
 
-    /**
-     * @var array Guarded fields
-     */
     protected $guarded = ['*'];
-
-    /**
-     * @var array Fillable fields
-     */
     protected $fillable = [];
 
+    // Використовуємо тільки jsonable для уникнення конфлікту
     protected $jsonable = ['options', 'field_rules', 'rules_options', 'file_extensions_list'];
 
-    /**
-     * @var \string[][]
-     */
     protected $filtered_rules = [
         'limit' => ['text', 'textarea'],
         'required' => ['text', 'textarea', 'select', 'checkbox', 'multicheckbox', 'radio', 'file', 'phone']
     ];
 
-    /**
-     * @var array Relations
-     */
     public $hasOne = [];
     public $hasMany = [];
     public $belongsTo = [];
@@ -58,9 +40,6 @@ class Field extends Model
     public $attachOne = [];
     public $attachMany = [];
 
-    /**
-     * beforeSValidate
-     */
     public function beforeValidate()
     {
         if ($this->file_extensions_list == 0) {
