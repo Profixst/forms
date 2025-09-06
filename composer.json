@@ -12,6 +12,7 @@
 	"minimum-stability": "dev",
     "require": {
         "google/recaptcha": "~1.1",
+		"google/cloud-recaptcha-enterprise": "^2.1.3",
         "phpoffice/phpspreadsheet": "^2.2"
 
     }
