@@ -23,7 +23,7 @@
 						name="{{ field.code }}"
 						id="{{ field.code }}"
 						placeholder="{{ field.placeholder }}"
-					>
+				>
 				</div>
 			{# /TEXT #}
 
