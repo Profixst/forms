@@ -17,13 +17,7 @@
 			{% if field.type == 'text' %}
 				<div class="form-group field-{{ field.code }}">
 					<label for="{{ field.code }}">{{ field.title }}</label>
-					<input
-						class="form-control"
-						type="text"
-						name="{{ field.code }}"
-						id="{{ field.code }}"
-						placeholder="{{ field.placeholder }}"
-					>
+					<input class="form-control"	type="text"	name="{{ field.code }}"	id="{{ field.code }}" placeholder="{{ field.placeholder }}">
 				</div>
 			{# /TEXT #}
 
