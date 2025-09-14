@@ -23,7 +23,7 @@
 						name="{{ field.code }}"
 						id="{{ field.code }}"
 						placeholder="{{ field.placeholder }}"
-				>
+					>
 				</div>
 			{# /TEXT #}
 
@@ -58,29 +58,11 @@
 				</div>
 			{# /SELECT #}
 
-<<<<<<< HEAD
-		//	{# RECAPTCHA v3 #}
-		//	{% elseif field.type == 'recaptcha' %}
-    		//		<script src="https://www.google.com/recaptcha/api.js?render={{ recaptcha.site_key }}"></script>
-    		//		<script>
-       		//			grecaptcha.ready(function() {
-            	//				grecaptcha.execute('{{ recaptcha.site_key }}', {action: 'submit'}).then(function(token) {
-                				// Вставляємо токен у приховане поле форми
-                //				document.getElementById('g-recaptcha-response').value = token;
-            	//				});
-        	//			});
-    		//		</script>
-    		//		<input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
-		//	{# /RECAPTCHA v3 #}
-
 			{# RECAPTCHA #}
-=======
-		    {# RECAPTCHA #}
->>>>>>> 1fd4107848b137e57a8b59cee24fa95acef58930
 			{% elseif field.type == 'recaptcha' %}
 				<div class="form-group" class="field-recaptcha">
 					<div class="g-recaptcha" data-sitekey="{{ recaptcha.site_key }}"></div>
-					<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl={{ recaptcha.lang }}"></script>
+					<script type="text/javascript"src="https://www.google.com/recaptcha/api.js?render={{ recaptcha.lang }}"></script>
 				</div>
 			{# /RECAPTCHA #}
 
