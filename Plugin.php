@@ -42,8 +42,10 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
-        Validator::replacer('recaptcha', 'ProFixS\Forms\Validators\Recaptcha@recaptchaMessage');
-        Validator::extend('recaptcha', 'ProFixS\Forms\Validators\Recaptcha@recaptcha');
+       /**   Validator::replacer('recaptcha', 'ProFixS\Forms\Validators\Recaptcha@recaptchaMessage');
+       * Validator::extend('recaptcha', 'ProFixS\Forms\Validators\Recaptcha@recaptcha'); */
+        Validator::extend('recaptcha', [\ProFixS\Forms\Validators\Recaptcha::class, 'recaptcha']);
+        Validator::replacer('recaptcha', [\ProFixS\Forms\Validators\Recaptcha::class, 'recaptchaMessage']);
 
         Validator::replacer('auth', 'ProFixS\Forms\Validators\Auth@message');
         Validator::extend('auth', 'ProFixS\Forms\Validators\Auth@validate');
