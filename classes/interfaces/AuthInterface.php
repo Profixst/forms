@@ -13,4 +13,5 @@ interface AuthInterface
     public static function getUser();
     public static function logout();
     public function auth(string $code): array;
+    public static function get($key);
 }
