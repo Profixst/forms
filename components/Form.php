@@ -16,6 +16,7 @@ use System\Models\File;
 use ValidationException;
 use Validator;
 use Queue;
+use Illuminate\Support\Facades\Http;
 
 class Form extends ComponentBase
 {
@@ -26,9 +27,6 @@ class Form extends ComponentBase
     public $user;
     public $authUrl;
 
-    /**
-     * componentDetails
-     */
     public function componentDetails()
     {
         return [
@@ -37,9 +35,6 @@ class Form extends ComponentBase
         ];
     }
 
-    /**
-     * defineProperties
-     */
     public function defineProperties()
     {
         return [
@@ -52,20 +47,13 @@ class Form extends ComponentBase
         ];
     }
 
-    /**
-     * onRun
-     */
     public function onRun()
     {
         $this->addJs('/plugins/profixs/forms/assets/js/forms-ajax.js?v=' . \System\Models\PluginVersion::getVersion('ProFixS.Forms'));
-
         $this->form = $this->loadForm();
         $this->recaptcha = $this->loadRecaptcha();
     }
 
-    /**
-     * onRenderAuthForm
-     */
     public function onRenderAuthForm()
     {
         try {
@@ -76,30 +64,19 @@ class Form extends ComponentBase
             }
         } catch (Exception $e) {
             trace_log($e);
-            return response()
-                ->json('Something was wrong.', 500);
+            return response()->json('Something was wrong.', 500);
         }
     }
 
-    /**
-     * isAuthRequired
-     */
     protected function isAuthRequired(): bool
     {
         if (!Config::get('profixs.forms::config.is_authorization_available')) {
             return false;
         }
 
-        if (!$this->form->is_auth_required) {
-            return false;
-        }
-
-        return true;
+        return $this->form->is_auth_required;
     }
 
-    /**
-     * loadForm
-     */
     protected function loadForm()
     {
         return FormModel::with('fields')
@@ -107,9 +84,6 @@ class Form extends ComponentBase
             ->first();
     }
 
-    /**
-     * loadRecaptcha
-     */
     protected function loadRecaptcha()
     {
         return [
@@ -118,9 +92,6 @@ class Form extends ComponentBase
         ];
     }
 
-    /**
-     * onSubmitForm
-     */
     public function onSubmitForm()
     {
         $this->validateFormId();
@@ -130,16 +101,11 @@ class Form extends ComponentBase
 
         Db::beginTransaction();
         try {
-            // save form data to db
             $inbox = Inbox::make();
             $inbox->form_id = request()->get('form_id');
-            $inbox->fields = request()->only(
-                $this->form->fields->lists('code')
-            );
+            $inbox->fields = request()->only($this->form->fields->lists('code'));
             $inbox->ip = request()->ip();
             $inbox->save();
-
-            // attach files
 
             foreach ($this->form->fields as $field) {
                 if ($field->type !== 'file') {
@@ -164,19 +130,14 @@ class Form extends ComponentBase
         $data = ['inbox_id' => $inbox->id];
         SystemEvent::fire('profixs.forms::component.form.sendMail', [&$data]);
 
-        // send emails
         if ($this->form->send && count($this->form->emails)) {
             Queue::push('ProFixS\Forms\Jobs\SendFormMail@fire', $data);
         }
 
         $this->vars['inbox'] = $inbox;
-
         SystemEvent::fire('profixs.forms::inbox.afterSave', $inbox);
     }
 
-    /**
-     * validateFormId
-     */
     protected function validateFormId()
     {
         $validator = Validator::make(
@@ -188,9 +149,6 @@ class Form extends ComponentBase
         }
     }
 
-    /**
-     * validateFormFields
-     */
     protected function validateFormFields()
     {
         if (!$this->form) {
@@ -201,7 +159,6 @@ class Form extends ComponentBase
             return;
         }
 
-        // validate fields
         $validate_messages = [];
         foreach ($this->form->fields as $field) {
             if (!$field->validateRules || $field->type == 'recaptcha') {
@@ -215,20 +172,15 @@ class Form extends ComponentBase
                     $data = array_get($field->rules_options, $item);
                     try {
                         $validate_replaces = array_merge(
-                            (new ValidatorBuilderFactory)
-                                ->factory($item)
-                                ->build($data),
+                            (new ValidatorBuilderFactory)->factory($item)->build($data),
                             $validate_replaces
                         );
                         $validate_messages = array_merge(
-                            (new ValidatorBuilderFactory)
-                                ->factory($item)
-                                ->messages(),
+                            (new ValidatorBuilderFactory)->factory($item)->messages(),
                             $validate_messages
                         );
                         unset($validate_rules[$key]);
-                    } catch (ValidatorBuilderException $e) {
-                    }
+                    } catch (ValidatorBuilderException $e) {}
                 }
                 $validate_rules = array_merge($validate_rules, $validate_replaces);
             }
@@ -236,7 +188,7 @@ class Form extends ComponentBase
         }
 
         $validator = Validator::make(
-            request()->only($this->form->fields->lists( 'code')),
+            request()->only($this->form->fields->lists('code')),
             $rules ?? [],
             $validate_messages,
             $this->form->fields->lists('title', 'code')
@@ -246,26 +198,44 @@ class Form extends ComponentBase
             throw new ValidationException($validator);
         }
 
-        // validate recaptcha after validate another fields, becouse it disposable
         foreach ($this->form->fields as $field) {
             if ($field->type !== 'recaptcha') {
                 continue;
             }
-            $validation = Validator::make(
-                request()->only('g-recaptcha-response'),
-                ['g-recaptcha-response' => 'required|recaptcha'],
-                [],
-                ['g-recaptcha-response' => $field->title]
-            );
-            if ($validation->fails()) {
-                throw new ValidationException($validation);
+
+            $token = request()->input('g-recaptcha-response');
+            if (!$token) {
+                throw new ValidationException([
+                    'g-recaptcha-response' => $field->title . ' is required.'
+                ]);
             }
+
+            $this->validateRecaptchaEnterprise($token);
         }
     }
 
-    /**
-     * validateAuthorization
-     */
+    protected function validateRecaptchaEnterprise(string $token): void
+    {
+        $siteKey = Settings::get('site_key');
+        $apiKey = Settings::get('api_key');
+
+        $response = Http::post("https://recaptchaenterprise.googleapis.com/v1/projects/profix-brovary-r-1757840099873/assessments?key={$apiKey}", [
+            'event' => [
+                'token' => $token,
+                'siteKey' => $siteKey,
+                'expectedAction' => 'submit',
+            ]
+        ]);
+
+        $result = $response->json();
+
+        if (!($result['tokenProperties']['valid'] ?? false)) {
+            throw new ValidationException([
+                'recaptcha' => 'reCAPTCHA validation failed.'
+            ]);
+        }
+    }
+
     protected function validateAuthorization()
     {
         if (!$this->isAuthRequired()) {
@@ -279,3 +249,4 @@ class Form extends ComponentBase
         }
     }
 }
+
