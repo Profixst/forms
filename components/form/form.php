@@ -54,12 +54,17 @@
 
 			{# RECAPTCHA #}
 			{% elseif field.type == 'recaptcha' %}
-				<div class="form-group" class="field-recaptcha">
-					<div class="g-recaptcha" data-sitekey="{{ recaptcha.site_key }}"></div>
-					<script type="text/javascript"src="https://www.google.com/recaptcha/api.js?render={{ recaptcha.lang }}"></script>
-				</div>
+    		{% if recaptcha and recaptcha.site_key is not empty %}
+        		<div class="form-group field-recaptcha">
+            		<div class="g-recaptcha" data-sitekey="{{ recaptcha.site_key }}"></div>
+        		</div>
+        		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    		{% else %}
+        		<div class="alert alert-danger">⚠️ reCAPTCHA sitekey не передано. Віджет не працюватиме.</div>
+    		{% endif %}
+			{% endif %}
 			{# /RECAPTCHA #}
-
+		
 			{# RADIO #}
 			{% elseif field.type == 'radio' %}
 				<div class="form-group" class="field-radio">
