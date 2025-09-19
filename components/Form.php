@@ -88,7 +88,9 @@ class Form extends ComponentBase
     {
         return [
             'site_key' => Settings::get('site_key'),
-            'lang' => Settings::get('lang')
+            'lang' => Settings::get('lang'),
+            'version' => 'v3',
+            'action' => 'submit'
         ];
     }
 
@@ -218,7 +220,12 @@ class Form extends ComponentBase
             ]);
 
             $result = $verifyResponse->json();
-            if (!($result['success'] ?? false)) {
+
+            if (
+                !($result['success'] ?? false) ||
+                ($result['score'] ?? 0) < 0.5 ||
+                ($result['action'] ?? '') !== 'submit'
+            ) {
                 throw new ValidationException([
                     'recaptcha' => 'reCAPTCHA validation failed.'
                 ]);
