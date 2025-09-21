@@ -18,6 +18,12 @@ tabs:
         label: profixs.forms::lang.settings.secret_key
         comment: profixs.forms::lang.settings.secret_key_comment
         tab: profixs.forms::lang.settings.tabs.recaptcha
+    score_threshold:
+            label: 'Порогове значення довіри (score)'
+            type: number
+            span: auto
+            tab: 'reCAPTCHA'
+            default: 0.5
     lang:
         span: auto
         label: profixs.forms::lang.settings.language
