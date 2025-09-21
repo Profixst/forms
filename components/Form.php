@@ -54,9 +54,6 @@ class Form extends ComponentBase
         $this->form = $this->loadForm();
         $this->recaptcha = $this->loadRecaptcha();
 
-        // 🔑 Передаємо змінні у Twig
-        $this->page['form'] = $this->form;
-        $this->page['form']['recaptcha'] = $this->recaptcha;
     }
 
 
