@@ -11,14 +11,13 @@ class Settings extends Model
     use \October\Rain\Database\Traits\Encryptable;
 
     public $implement = [
-    	'@ProFixS.MultiLanguage.Behaviors.MultiLanguageSettingsModel',
-    	'@ProFixS.MultiSite.Behaviors.MultiSiteSettingsModel',
-    	'@ProFixS.Revisions.Behaviors.RevisionsModel',
+        '@ProFixS.MultiLanguage.Behaviors.MultiLanguageSettingsModel',
+        '@ProFixS.MultiSite.Behaviors.MultiSiteSettingsModel',
+        '@ProFixS.Revisions.Behaviors.RevisionsModel',
         'System.Behaviors.SettingsModel'
     ];
 
     public $settingsCode = 'profixs_forms_settings';
-
     public $settingsFields = 'fields.yaml';
 
     /**
@@ -26,7 +25,8 @@ class Settings extends Model
      */
     protected $encryptable = [
         'auth_client_id',
-        'auth_client_secret'
+        'auth_client_secret',
+        'secret_key'
     ];
 
     /**
@@ -44,6 +44,14 @@ class Settings extends Model
             );
         }
 
+        if (!Config::get('profixs.forms::config.is_recaptcha_enabled')) {
+            unset(
+                $fields->tabs['fields']['site_key'],
+                $fields->tabs['fields']['secret_key'],
+                $fields->tabs['fields']['score_threshold']
+            );
+        }
+
         return $fields;
     }
 
@@ -52,6 +60,6 @@ class Settings extends Model
      */
     public function formExtendFields($form, $fields)
     {
-
+        // Можна додати динамічну логіку для полів, якщо потрібно
     }
 }
