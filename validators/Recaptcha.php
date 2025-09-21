@@ -1,9 +1,9 @@
 <?php namespace ProFixS\Forms\Validators;
 
 use Request;
+use Log;
 use ReCaptcha\ReCaptcha as GoogleRecaptcha;
 use ProFixS\Forms\Models\Settings;
-use Log;
 
 class Recaptcha
 {
@@ -13,6 +13,7 @@ class Recaptcha
     public function recaptcha($attribute, $value)
     {
         $secretKey = Settings::get('secret_key');
+        $threshold = Settings::get('score_threshold', 0.5);
 
         if (empty($secretKey)) {
             Log::warning('reCAPTCHA validation skipped: secret key is missing.');
@@ -20,7 +21,6 @@ class Recaptcha
         }
 
         $recaptcha = new GoogleRecaptcha($secretKey);
-
         $response = $recaptcha->verify($value, Request::ip());
 
         if (!$response->isSuccess()) {
@@ -31,7 +31,6 @@ class Recaptcha
         }
 
         $score = $response->getScore();
-        $threshold = Settings::get('score_threshold', 0.5);
 
         if ($score < $threshold) {
             Log::info('reCAPTCHA score too low', [
@@ -49,7 +48,6 @@ class Recaptcha
      */
     public function recaptchaMessage($message, $attribute, $rule, $parameters)
     {
-        return 'Перевірка reCAPTCHA не пройдена.';
+        return 'Перевірка reCAPTCHA не пройдена. Спробуйте ще раз.';
     }
 }
-
