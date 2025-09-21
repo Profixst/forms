@@ -50,9 +50,15 @@ class Form extends ComponentBase
     public function onRun()
     {
         $this->addJs('/plugins/profixs/forms/assets/js/forms-ajax.js?v=' . \System\Models\PluginVersion::getVersion('ProFixS.Forms'));
+
         $this->form = $this->loadForm();
         $this->recaptcha = $this->loadRecaptcha();
+
+        // 🔑 Передаємо змінні у Twig
+        $this->page['form'] = $this->form;
+        $this->page['form']['recaptcha'] = $this->recaptcha;
     }
+
 
     public function onRenderAuthForm()
     {
