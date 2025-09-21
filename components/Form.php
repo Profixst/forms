@@ -54,6 +54,8 @@ class Form extends ComponentBase
         $this->form = $this->loadForm();
         $this->recaptcha = $this->loadRecaptcha();
 
+        $this->page['recaptcha'] = $this->recaptcha;
+
     }
 
 
