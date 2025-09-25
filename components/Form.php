@@ -250,4 +250,27 @@ class Form extends ComponentBase
             ]);
         }
     }
+    public function onFormSend()
+{
+    $data = post();
+
+    $rules = [
+        'name' => 'required|string|max:255',
+        'email' => 'required|email',
+        'message' => 'required|string',
+    ];
+
+    $validator = Validator::make($data, $rules);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'errors' => $validator->errors()
+        ], 422);
+    }
+
+    // Тут можна додати логіку збереження або надсилання email
+
+    return response()->json(['success' => true]);
+}
+
 }
