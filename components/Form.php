@@ -16,7 +16,6 @@ use System\Models\File;
 use ValidationException;
 use Validator;
 use Queue;
-use Illuminate\Support\Facades\Http;
 
 class Form extends ComponentBase
 {
@@ -53,7 +52,6 @@ class Form extends ComponentBase
 
         $this->form = $this->loadForm();
         $this->recaptcha = $this->loadRecaptcha();
-
         $this->page['recaptcha'] = $this->recaptcha;
 
     }
@@ -78,8 +76,10 @@ class Form extends ComponentBase
         if (!Config::get('profixs.forms::config.is_authorization_available')) {
             return false;
         }
-
-        return $this->form->is_auth_required;
+        if (!$this->form->is_auth_required) {
+            return false;
+        }
+        return true;
     }
 
     protected function loadForm()
