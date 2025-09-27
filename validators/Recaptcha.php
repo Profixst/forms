@@ -4,6 +4,7 @@ use Request;
 use Log;
 use ReCaptcha\ReCaptcha as GoogleRecaptcha;
 use ProFixS\Forms\Models\Settings;
+use Db;
 
 class Recaptcha
 {
